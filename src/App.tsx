@@ -10,21 +10,21 @@ function App() {
 
   useEffect(() => {
     if (searchTerm) {
-      document.title=`${searchTerm} Music`
+      document.title = `${searchTerm} Music`
       const fetchData = async () => {
         const response = await fetch(`https://itunes.apple.com/search?term=${searchTerm}`)
         const resData = await response.json()
-        if(resData.results.length > 0) {
+        if (resData.results.length > 0) {
           setData(resData.results)
         } else {
           setMessage('Not Found')
         }
       }
       fetchData()
-  }
+    }
   }, [searchTerm])
 
-  const handleSearch = (e, term) => {
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>, term: string): void => {
     e.preventDefault()
     setSearchTerm(term)
   }
